@@ -1,3 +1,3 @@
 export default {
-    SECRET: 'prodapp-api'
+    SECRET: 'stock-Api'
 }
