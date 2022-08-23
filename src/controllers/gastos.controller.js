@@ -1,8 +1,8 @@
 import Gastos from "../models/Gastos";
 
 export const createGasto = async (req, res) => {
-  const { concepto, monto, metodoPago, fecha } = req.body;
-  const newGastos = new Gastos({ concepto, monto, metodoPago, fecha });
+  const { concepto, monto, metodoPago, fecha, month, year } = req.body;
+  const newGastos = new Gastos({ concepto, monto, metodoPago, fecha, month, year });
   const gastoSaved = await newGastos.save();
   res.status(201).json(gastoSaved);
 };
@@ -38,3 +38,16 @@ export const getByDate = async (req,res) => {
   
   res.status(200).json(gastosByDate)
 }
+
+export const getByMonth = async (req,res) => {
+
+  const gastosByMonth = await Gastos.find({month:req.params.month})
+  res.status(200).json(gastosByMonth)
+}
+
+export const getByYear = async (req,res) => {
+  
+  const gastosByYear = await Gastos.find({year:req.params.year})
+  res.status(200).json(gastosByYear)
+}
+

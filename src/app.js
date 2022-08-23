@@ -12,6 +12,7 @@ import userRoutes from './routes/user.routes'
 import categoryRoutes from './routes/categoryProducts.routes'
 import ventaRoutes from './routes/ventas.routes'
 import gastosRoutes from './routes/gastos.routes'
+import productoVendidoRoutes from './routes/productVendido.routes'
 import cors from 'cors';
 
 
@@ -46,5 +47,6 @@ app.use('/api/users',userRoutes)
 app.use('/api/categoryProduct', categoryRoutes)
 app.use('/api/ventas', ventaRoutes)
 app.use('/api/gastos', gastosRoutes)
+app.use('/api/productosvendidos',productoVendidoRoutes)
 
 export default app;

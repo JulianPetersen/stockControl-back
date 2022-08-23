@@ -5,7 +5,9 @@ const gastoSchema = new Schema({
     concepto:String,
     monto:Number,
     metodoPago:String,
-    fecha:String
+    fecha:String,
+    month:String,
+    year:String
 },
 {
     timestamps:true,

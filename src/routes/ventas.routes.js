@@ -17,4 +17,9 @@ router.delete('/:ventaId',authJwt.verifyToken ,ventaCtrl.deleteVenta)
 
 router.get('/getByFecha/:fecha', authJwt.verifyToken, ventaCtrl.getByDate)
 
+router.get('/getByMonth/:month', authJwt.verifyToken, ventaCtrl.getByMonth)
+
+router.get('/getByYear/:year', authJwt.verifyToken, ventaCtrl.getByYear)
+
+
 export default router;

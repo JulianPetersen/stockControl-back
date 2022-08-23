@@ -17,4 +17,8 @@ router.delete('/:gastoId',authJwt.verifyToken ,gastoCtrl.deleteGasto)
 
 router.get('/getByFecha/:fecha', authJwt.verifyToken, gastoCtrl.getByDate)
 
+router.get('/getByMonth/:month', authJwt.verifyToken, gastoCtrl.getByMonth)
+
+router.get('/getByYear/:year', authJwt.verifyToken, gastoCtrl.getByYear)
+
 export default router;

@@ -1,8 +1,9 @@
 import Venta from "../models/ventas";
 
+
 export const createVenta = async (req, res) => {
-  const { producto, monto, metodoPago, fecha } = req.body;
-  const newVenta = new Venta({ producto, monto, metodoPago, fecha});
+  const { producto, monto, metodoPago, fecha, month, year } = req.body;
+  const newVenta = new Venta({ producto, monto, metodoPago, fecha, month, year});
   const ventaSaved = await newVenta.save();
   res.status(201).json(ventaSaved);
 };
@@ -40,3 +41,18 @@ export const getByDate = async (req,res) => {
   .populate('producto')
   res.status(200).json(ventasByDate)
 }
+
+export const getByMonth = async (req,res) => {
+  console.log(req.params.month)
+  const ventasByMonth = await Venta.find({month:req.params.month})
+  .populate('producto')
+  res.status(200).json(ventasByMonth)
+}
+
+export const getByYear = async (req,res) => {
+  const ventasByYear = await Venta.find({year:req.params.year})
+  .populate('producto')
+  res.status(200).json(ventasByYear)
+}
+
+
