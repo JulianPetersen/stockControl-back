@@ -1,11 +1,34 @@
 import Venta from "../models/ventas";
-
+import ProductoVendido from "../models/productoVendido";
+import Product from "../models/Products";
 
 export const createVenta = async (req, res) => {
   const { producto, monto, metodoPago, fecha, month, year } = req.body;
   const newVenta = new Venta({ producto, monto, metodoPago, fecha, month, year});
   const ventaSaved = await newVenta.save();
-  res.status(201).json(ventaSaved);
+
+  const buscarProductoVendido = await ProductoVendido.find({producto:producto})
+ 
+  
+  
+
+  if(buscarProductoVendido.length == 0){
+    const newProductoVendido = new ProductoVendido({producto,cantVentas:1,fecha,month,year})
+    const newProductoVendidoSaved = await newProductoVendido.save();
+    
+  }
+  if(buscarProductoVendido.length != 0){
+
+    const cantidad = buscarProductoVendido[0].cantVentas
+    const updateNewProduct = await ProductoVendido.updateOne({producto: {$eq:producto}}, {$set: {cantVentas:cantidad+1}})
+  }
+
+  const buscandoPorducto = await Product.find({_id:producto})
+  const stockProduct = buscandoPorducto[0].stock;
+
+  const updateStockProduct = await Product.updateOne({_id:producto}, {$set:{stock:stockProduct - 1 }})
+
+   res.status(201).json(ventaSaved);
 };
 
 export const getVentas = async (req, res) => {
@@ -31,19 +54,28 @@ export const updateVenta = async (req, res) => {
 };
 
 export const deleteVenta = async (req, res) => {
+  const buscarVenta = await Venta.find({_id:req.params.ventaId})
+  const productoEliminado = buscarVenta[0].producto;
+
+  const buscarProductoVendido = await ProductoVendido.find({producto:productoEliminado})
+
+  const cantidadVenta = buscarProductoVendido[0].cantVentas
+
+  const updateNewProduct = await ProductoVendido.updateOne({producto: {$eq:productoEliminado}}, {$set: {cantVentas:cantidadVenta-1}})
+
   const deletedVenta = await Venta.findByIdAndDelete(req.params.ventaId);
   res.status(204).json();
 };
 
 export const getByDate = async (req,res) => {
-  console.log(req.params.fecha)
+  
   const ventasByDate = await Venta.find({fecha:req.params.fecha})
   .populate('producto')
   res.status(200).json(ventasByDate)
 }
 
 export const getByMonth = async (req,res) => {
-  console.log(req.params.month)
+ 
   const ventasByMonth = await Venta.find({month:req.params.month})
   .populate('producto')
   res.status(200).json(ventasByMonth)

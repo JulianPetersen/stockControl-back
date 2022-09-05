@@ -14,3 +14,19 @@ export const getProductVendido = async (req, res) => {
   res.json(productVendido);
 };
 
+export const getProductVendidoByYear = async (req, res) => {
+  const productVendido = await ProductoVendido.find({year:req.params.year})
+  .populate('producto')
+  res.json(productVendido);
+};
+
+export const updateProductoVendido = async (req, res) => {
+  const updateProductoVendido = await ProductoVendido.findByIdAndUpdate(
+    req.params.productVendido,
+    req.body,
+    {
+      new: true,
+    }
+  );
+  res.status(200).json(updateProductoVendido);
+};
