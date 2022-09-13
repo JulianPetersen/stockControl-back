@@ -40,7 +40,7 @@ export const signin = async (req,res) => {
 
    const token =  jwt.sign({id: userFound._id}, config.SECRET, )
 
-    res.json({token,userFound})
+    res.json({token,firstTime:userFound.firstTime})
     
 }
 

@@ -15,6 +15,10 @@ const userSchema = new Schema({
         type:String,
         required:true
     },
+    firstTime:{
+        type:Boolean,
+        default:true
+    },
     roles:[{
         ref:"Role",
         type: Schema.Types.ObjectId
