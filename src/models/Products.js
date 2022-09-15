@@ -7,6 +7,8 @@ const productSchema = new Schema({
     price:Number,
     imgUrl:String,
     stock:Number,
+    userId: {ref:"User",
+    type: Schema.Types.ObjectId}
     
 },
 {

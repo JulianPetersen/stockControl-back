@@ -11,6 +11,9 @@ const ventaSchema = new Schema({
     fecha:String,
     month:String,
     year:String,
+    userId: {ref:"User",
+    type: Schema.Types.ObjectId}
+    
 },
 {
     timestamps:true,

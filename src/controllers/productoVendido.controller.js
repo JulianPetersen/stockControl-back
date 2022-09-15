@@ -9,13 +9,13 @@ export const createProductVendido = async (req, res) => {
 };
 
 export const getProductVendido = async (req, res) => {
-  const productVendido = await ProductoVendido.find()
+  const productVendido = await ProductoVendido.find({userId:req.params.userId})
   .populate('producto')
   res.json(productVendido);
 };
 
 export const getProductVendidoByYear = async (req, res) => {
-  const productVendido = await ProductoVendido.find({year:req.params.year})
+  const productVendido = await ProductoVendido.find({year:req.params.year,userId:req.params.userId})
   .populate('producto')
   res.json(productVendido);
 };

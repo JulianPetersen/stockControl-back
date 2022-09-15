@@ -3,17 +3,14 @@ import ProductoVendido from "../models/productoVendido";
 import Product from "../models/Products";
 
 export const createVenta = async (req, res) => {
-  const { producto, monto, metodoPago, fecha, month, year } = req.body;
-  const newVenta = new Venta({ producto, monto, metodoPago, fecha, month, year});
+  const { producto, monto, metodoPago, fecha, month, year, userId } = req.body;
+  const newVenta = new Venta({ producto, monto, metodoPago, fecha, month, year, userId});
   const ventaSaved = await newVenta.save();
 
   const buscarProductoVendido = await ProductoVendido.find({producto:producto})
- 
-  
-  
 
   if(buscarProductoVendido.length == 0){
-    const newProductoVendido = new ProductoVendido({producto,cantVentas:1,fecha,month,year})
+    const newProductoVendido = new ProductoVendido({producto,cantVentas:1,fecha,month,year,userId})
     const newProductoVendidoSaved = await newProductoVendido.save();
     
   }
@@ -32,7 +29,7 @@ export const createVenta = async (req, res) => {
 };
 
 export const getVentas = async (req, res) => {
-  const ventas = await Venta.find()
+  const ventas = await Venta.find({userId:req.params.userId})
   .populate('producto')
   res.json(ventas);
 };
@@ -69,20 +66,20 @@ export const deleteVenta = async (req, res) => {
 
 export const getByDate = async (req,res) => {
   
-  const ventasByDate = await Venta.find({fecha:req.params.fecha})
+  const ventasByDate = await Venta.find({fecha:req.params.fecha, userId:req.params.userId})
   .populate('producto')
   res.status(200).json(ventasByDate)
 }
 
 export const getByMonth = async (req,res) => {
  
-  const ventasByMonth = await Venta.find({month:req.params.month})
+  const ventasByMonth = await Venta.find({month:req.params.month, userId:req.params.userId})
   .populate('producto')
   res.status(200).json(ventasByMonth)
 }
 
 export const getByYear = async (req,res) => {
-  const ventasByYear = await Venta.find({year:req.params.year})
+  const ventasByYear = await Venta.find({year:req.params.year, userId:req.params.userId})
   .populate('producto')
   res.status(200).json(ventasByYear)
 }

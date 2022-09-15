@@ -7,7 +7,7 @@ const router = Router();
 
 router.post('/',[authJwt.verifyToken],upload.single('image'), productsCtrl.createProduct);
 
-router.get('/',[authJwt.verifyToken], productsCtrl.getProducts);
+router.get('/:userId',[authJwt.verifyToken], productsCtrl.getProducts);
 
 router.get('/:productId', productsCtrl.getProductById)
 

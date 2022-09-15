@@ -29,7 +29,7 @@ export const signUp = async (req,res) => {
 }
 
 export const signin = async (req,res) => {
-    
+
     const userFound = await User.findOne({email: req.body.email}).populate('roles')
 
     if(!userFound) return res.status(400).json({message:'user not found'})
@@ -38,9 +38,10 @@ export const signin = async (req,res) => {
 
     if(!matchPassword) return res.status(401).json({token: null, message: 'invalid Password'})
 
-   const token =  jwt.sign({id: userFound._id}, config.SECRET, )
+    const token =  jwt.sign({id: userFound._id}, config.SECRET, )
+    console.log(userFound)
 
-    res.json({token,firstTime:userFound.firstTime})
+    res.json({token,userId:userFound._id,firstTime:userFound.firstTime})
     
 }
 

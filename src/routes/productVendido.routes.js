@@ -6,9 +6,9 @@ const router = Router();
 
 router.post('/',[authJwt.verifyToken], productVendidoCtrl.createProductVendido);
 
-router.get('/',[authJwt.verifyToken], productVendidoCtrl.getProductVendido);
+router.get('/:userId',[authJwt.verifyToken], productVendidoCtrl.getProductVendido);
 
-router.get('/:year',[authJwt.verifyToken], productVendidoCtrl.getProductVendidoByYear);
+router.get('/:year/:userId',[authJwt.verifyToken], productVendidoCtrl.getProductVendidoByYear);
 
 router.put('/:productVendido',[authJwt.verifyToken], productVendidoCtrl.updateProductoVendido);
 

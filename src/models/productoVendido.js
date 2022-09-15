@@ -8,7 +8,9 @@ const productVendidoSchema = new Schema({
     cantVentas:Number,
     fecha:String,
     month:String,
-    year:String
+    year:String,
+    userId: {ref:"User",
+    type: Schema.Types.ObjectId}
     
 },
 {

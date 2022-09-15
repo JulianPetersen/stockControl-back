@@ -1,8 +1,8 @@
 import Product from "../models/Products";
 
 export const createProduct = async (req, res) => {
-  const { name, category, price, stock, } = req.body;
-  const newProduct = new Product({ name, category, price,stock, });
+  const { name, category, price, stock, userId} = req.body;
+  const newProduct = new Product({ name, category, price,stock, userId});
   if (req.file) {
     const { filename } = req.file;
     newProduct.setImgUrl(filename);
@@ -14,7 +14,7 @@ export const createProduct = async (req, res) => {
 };
 
 export const getProducts = async (req, res) => {
-  const products = await Product.find();
+  const products = await Product.find({userId:req.params.userId});
   res.json(products);
 };
 
