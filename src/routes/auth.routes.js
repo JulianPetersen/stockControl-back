@@ -7,5 +7,8 @@ router.post('/signup', [verifySignup.checkDuplicateUsernameOrEmail, verifySignup
 
 router.post('/signin', authCtrl.signin)
 
+router.put('/updateuser/:userId', authCtrl.updateuser)
+
+router.get('/getuser/:userId', authCtrl.getUserById)
 
 export default router;

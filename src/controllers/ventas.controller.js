@@ -53,26 +53,20 @@ export const updateVenta = async (req, res) => {
 export const deleteVenta = async (req, res) => {
   const buscarVenta = await Venta.find({_id:req.params.ventaId})
   const productoEliminado = buscarVenta[0].producto;
-
   const buscarProductoVendido = await ProductoVendido.find({producto:productoEliminado})
-
   const cantidadVenta = buscarProductoVendido[0].cantVentas
-
-  const updateNewProduct = await ProductoVendido.updateOne({producto: {$eq:productoEliminado}}, {$set: {cantVentas:cantidadVenta-1}})
-
+  const updateNewProduct = await ProductoVendido.updateOne({producto: {$eq:productoEliminado}}, {$set: {cantVentas:cantidadVenta+1}})
   const deletedVenta = await Venta.findByIdAndDelete(req.params.ventaId);
   res.status(204).json();
 };
 
 export const getByDate = async (req,res) => {
-  
   const ventasByDate = await Venta.find({fecha:req.params.fecha, userId:req.params.userId})
   .populate('producto')
   res.status(200).json(ventasByDate)
 }
 
 export const getByMonth = async (req,res) => {
- 
   const ventasByMonth = await Venta.find({month:req.params.month, userId:req.params.userId})
   .populate('producto')
   res.status(200).json(ventasByMonth)

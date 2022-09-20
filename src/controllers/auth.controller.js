@@ -17,7 +17,7 @@ export const signUp = async (req,res) => {
        const foundRoles = await Role.find({name: {$in: roles}})
        newUser.roles = foundRoles.map(role => role._id)
     }else {
-        const role = await Role.findOne({name:'user'})
+        const role = await Role.findOne({name:'admin'})
         newUser.roles = [role._id]
     }
 
@@ -45,3 +45,18 @@ export const signin = async (req,res) => {
     
 }
 
+export const updateuser = async (req, res) => {
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.userId,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.status(200).json(updatedUser);
+  };
+
+  export const getUserById = async (req,res) => {
+    const getUser = await User.findById(req.params.userId)
+    res.status(200).json(getUser)
+  }

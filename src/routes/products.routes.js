@@ -11,9 +11,12 @@ router.get('/:userId',[authJwt.verifyToken], productsCtrl.getProducts);
 
 router.get('/:productId', productsCtrl.getProductById)
 
+router.get('/getbyname/:userId/:name',authJwt.verifyToken , productsCtrl.getByName)
+
 router.put('/:productId',authJwt.verifyToken ,productsCtrl.updateProductById)
 
 router.delete('/:productId',authJwt.verifyToken ,productsCtrl.deleteProductById)
+
 
 
 

@@ -18,6 +18,12 @@ export const getProducts = async (req, res) => {
   res.json(products);
 };
 
+export const getByName = async (req,res) => {
+  const products = await Product.find({userId:req.params.userId, name :{ $regex: '.*' + req.params.name + '.*' }})
+  res.json(products)
+}
+
+
 export const getProductById = async (req, res) => {
   const product = await Product.findById(req.params.productId);
   res.status(200).json(product);

@@ -22,7 +22,10 @@ const userSchema = new Schema({
     roles:[{
         ref:"Role",
         type: Schema.Types.ObjectId
-    }]
+    }],
+    nombreSalon:{
+        type:String
+    }
 },{
     timestamps:true,
     versionKey:false
