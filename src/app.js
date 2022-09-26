@@ -1,7 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
 import pkg from '../package.json'
-
 import {createRoles} from './libs/initialSetUp'
 
 
@@ -13,6 +12,11 @@ import categoryRoutes from './routes/categoryProducts.routes'
 import ventaRoutes from './routes/ventas.routes'
 import gastosRoutes from './routes/gastos.routes'
 import productoVendidoRoutes from './routes/productVendido.routes'
+import turnosRoutes from './routes/turnos.routes'
+import turnoCompletoRoutes from './routes/turnoCompleto.routes'
+
+
+
 import cors from 'cors';
 
 
@@ -41,12 +45,14 @@ app.get('/', (req,res)=> {
     })
 })
 
-app.use('/api/products',productsRoutes)
-app.use('/api/auth',authRoutes)
-app.use('/api/users',userRoutes)
-app.use('/api/categoryProduct', categoryRoutes)
-app.use('/api/ventas', ventaRoutes)
-app.use('/api/gastos', gastosRoutes)
-app.use('/api/productosvendidos',productoVendidoRoutes)
+app.use('/api/products',productsRoutes);
+app.use('/api/auth',authRoutes);
+app.use('/api/users',userRoutes);
+app.use('/api/categoryProduct', categoryRoutes);
+app.use('/api/ventas', ventaRoutes);
+app.use('/api/gastos', gastosRoutes);
+app.use('/api/productosvendidos',productoVendidoRoutes);
+app.use('/api/turnos',turnosRoutes);
+app.use('/api/turnosCompleto',turnoCompletoRoutes);
 
 export default app;

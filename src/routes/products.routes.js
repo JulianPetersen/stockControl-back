@@ -19,5 +19,4 @@ router.delete('/:productId',authJwt.verifyToken ,productsCtrl.deleteProductById)
 
 
 
-
 export default router;

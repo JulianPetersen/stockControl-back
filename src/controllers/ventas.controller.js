@@ -55,7 +55,8 @@ export const deleteVenta = async (req, res) => {
   const productoEliminado = buscarVenta[0].producto;
   const buscarProductoVendido = await ProductoVendido.find({producto:productoEliminado})
   const cantidadVenta = buscarProductoVendido[0].cantVentas
-  const updateNewProduct = await ProductoVendido.updateOne({producto: {$eq:productoEliminado}}, {$set: {cantVentas:cantidadVenta+1}})
+  console.log(cantidadVenta)
+  const updateNewProduct = await ProductoVendido.updateOne({producto: {$eq:productoEliminado}}, {$set: {cantVentas:cantidadVenta-1}})
   const deletedVenta = await Venta.findByIdAndDelete(req.params.ventaId);
   res.status(204).json();
 };
