@@ -14,7 +14,8 @@ import gastosRoutes from './routes/gastos.routes'
 import productoVendidoRoutes from './routes/productVendido.routes'
 import turnosRoutes from './routes/turnos.routes'
 import turnoCompletoRoutes from './routes/turnoCompleto.routes'
-
+import Ingresoturno from './routes/ingresoTurno.routes'
+import EgresosTurno from './routes/egresosTurnos.routes'
 
 
 import cors from 'cors';
@@ -54,5 +55,7 @@ app.use('/api/gastos', gastosRoutes);
 app.use('/api/productosvendidos',productoVendidoRoutes);
 app.use('/api/turnos',turnosRoutes);
 app.use('/api/turnosCompleto',turnoCompletoRoutes);
+app.use('/api/ingresoTurno',Ingresoturno);
+app.use('/api/egresoTurno',EgresosTurno);
 
 export default app;
