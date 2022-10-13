@@ -5,19 +5,19 @@ import { authJwt } from "../middlewares";
 
 const router = Router();
 
-router.post('/',[authJwt.verifyToken], ventaCtrl.createVenta);
+router.post('/',[authJwt.verifyToken,authJwt.isAdmin,authJwt.isModerator], ventaCtrl.createVenta);
 
-router.get('/:userId',[authJwt.verifyToken], ventaCtrl.getVentas);
+router.get('/:userId',[authJwt.verifyToken,authJwt.isAdmin], ventaCtrl.getVentas);
 
-router.get('/:ventaId', ventaCtrl.getVentaById)
+router.get('/:ventaId', [authJwt.verifyToken,authJwt.isAdmin],ventaCtrl.getVentaById)
 
-router.put('/:ventaId',authJwt.verifyToken ,ventaCtrl.updateVenta)
+router.put('/:ventaId',[authJwt.verifyToken,authJwt.isAdmin],ventaCtrl.updateVenta)
 
-router.delete('/:ventaId',authJwt.verifyToken ,ventaCtrl.deleteVenta)
+router.delete('/:ventaId',[authJwt.verifyToken,authJwt.isAdmin],ventaCtrl.deleteVenta)
 
-router.get('/getByFecha/:fecha/:userId', authJwt.verifyToken, ventaCtrl.getByDate)
+router.get('/getByFecha/:fecha/:userId', [authJwt.verifyToken,authJwt.isAdmin],ventaCtrl.getByDate)
 
-router.get('/getByMonth/:month/:userId', authJwt.verifyToken, ventaCtrl.getByMonth)
+router.get('/getByMonth/:month/:userId', [authJwt.verifyToken,authJwt.isAdmin],ventaCtrl.getByMonth)
 
 router.get('/getByYear/:year/:userId', authJwt.verifyToken, ventaCtrl.getByYear)
 

@@ -5,6 +5,8 @@ import {verifySignup} from '../middlewares'
 
 router.post('/signup', [verifySignup.checkDuplicateUsernameOrEmail, verifySignup.checkRoleExisted] ,authCtrl.signUp)
 
+router.post('/signup/singupsubuser/', [verifySignup.checkDuplicateUsernameOrEmail, verifySignup.checkRoleExisted] ,authCtrl.signUpSubUser)
+
 router.post('/signin', authCtrl.signin)
 
 router.put('/updateuser/:userId', authCtrl.updateuser)

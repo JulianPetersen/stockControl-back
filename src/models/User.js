@@ -7,6 +7,14 @@ const userSchema = new Schema({
         type:String,
         unique:true
     },
+    nombre:{
+        type:String,
+
+    },
+    apellido:{
+        type:String,
+
+    },
     email: {
         type:String,
         unique:true
@@ -25,7 +33,20 @@ const userSchema = new Schema({
     }],
     nombreSalon:{
         type:String
+    },
+    isModerator:{
+        type:Boolean,
+        default:false
+    },
+    idAdmin:{
+        type:String,
+        default:" "
+    },
+    userActive:{
+        type:Boolean,
+        default:true
     }
+
 },{
     timestamps:true,
     versionKey:false

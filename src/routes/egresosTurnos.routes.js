@@ -6,15 +6,15 @@ import { authJwt } from "../middlewares";
 
 const router = Router();
 
-router.post('/',[authJwt.verifyToken], egresosTurnos.createEgresoTurno);
+router.post('/',[authJwt.verifyToken,authJwt.isAdmin], egresosTurnos.createEgresoTurno);
 
-router.get('/:userId',[authJwt.verifyToken], egresosTurnos.getEgresoTurno);
+router.get('/:userId',[authJwt.verifyToken,authJwt.isAdmin], egresosTurnos.getEgresoTurno);
 
-router.get('/getEgresobydate/:userId/:fecha', [authJwt.verifyToken], egresosTurnos.getEgresoTurnoByDate)
+router.get('/getEgresobydate/:userId/:fecha', [authJwt.verifyToken,authJwt.isAdmin], egresosTurnos.getEgresoTurnoByDate)
 
-router.put('/:egresoId',authJwt.verifyToken , egresosTurnos.updateEgresoTurno)
+router.put('/:egresoId',[authJwt.verifyToken,authJwt.isAdmin] , egresosTurnos.updateEgresoTurno)
 
-router.delete('/:egresoId',authJwt.verifyToken ,egresosTurnos.deleteEgresoTurno)
+router.delete('/:egresoId',[authJwt.verifyToken,authJwt.isAdmin] ,egresosTurnos.deleteEgresoTurno)
 
 
 export default router; 
