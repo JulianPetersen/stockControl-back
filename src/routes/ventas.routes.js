@@ -7,19 +7,19 @@ const router = Router();
 
 router.post('/',[authJwt.verifyToken,authJwt.isAdmin,authJwt.isModerator], ventaCtrl.createVenta);
 
-router.get('/:userId',[authJwt.verifyToken,authJwt.isAdmin], ventaCtrl.getVentas);
+router.get('/:userId',[authJwt.verifyToken,authJwt.isModerator], ventaCtrl.getVentas);
 
-router.get('/:ventaId', [authJwt.verifyToken,authJwt.isAdmin],ventaCtrl.getVentaById)
+router.get('/:ventaId', [authJwt.verifyToken,authJwt.isModerator],ventaCtrl.getVentaById)
 
-router.put('/:ventaId',[authJwt.verifyToken,authJwt.isAdmin],ventaCtrl.updateVenta)
+router.put('/:ventaId',[authJwt.verifyToken,authJwt.isModerator],ventaCtrl.updateVenta)
 
-router.delete('/:ventaId',[authJwt.verifyToken,authJwt.isAdmin],ventaCtrl.deleteVenta)
+router.delete('/:ventaId',[authJwt.verifyToken,authJwt.isModerator],ventaCtrl.deleteVenta)
 
-router.get('/getByFecha/:fecha/:userId', [authJwt.verifyToken,authJwt.isAdmin],ventaCtrl.getByDate)
+router.get('/getByFecha/:fecha/:userId', [authJwt.verifyToken,authJwt.isModerator],ventaCtrl.getByDate)
 
-router.get('/getByMonth/:month/:userId', [authJwt.verifyToken,authJwt.isAdmin],ventaCtrl.getByMonth)
+router.get('/getByMonth/:month/:userId', [authJwt.verifyToken,authJwt.isModerator],ventaCtrl.getByMonth)
 
-router.get('/getByYear/:year/:userId', authJwt.verifyToken, ventaCtrl.getByYear)
+router.get('/getByYear/:year/:userId', [authJwt.verifyToken,authJwt.isModerator], ventaCtrl.getByYear)
 
 
 export default router;

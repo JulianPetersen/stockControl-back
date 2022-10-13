@@ -71,7 +71,7 @@ export const signin = async (req,res) => {
       const token =  jwt.sign({id: userFound._id}, config.SECRET, )
       console.log(userFound)
   
-      res.json({token,userId:userFound._id,firstTime:userFound.firstTime,isModerator:userFound.isModerator,idAdmin:userFound.idAdmin,nombreSalon:userFound.nombreSalon})
+      res.json({token,userId:userFound._id,firstTime:userFound.firstTime,isModerator:userFound.isModerator,idAdmin:userFound.idAdmin,nombreSalon:userFound.nombreSalon,roles:userFound.roles})
     }else{
       res.status(400).json({message:'el usuario se encuentra inactivo, ponte en contacto con el administrador.'})
     }
@@ -93,5 +93,6 @@ export const updateuser = async (req, res) => {
 
   export const getUserById = async (req,res) => {
     const getUser = await User.findById(req.params.userId)
+    .populate('roles')
     res.status(200).json(getUser)
-  }
+  } 
