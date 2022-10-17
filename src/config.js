@@ -1,6 +1,6 @@
 export default {
     SECRET: 'stock-Api',
-    host: 'http://localhost',
-    port: '4000'
+    host: '179.43.126.181',
+    port: '5350'
 }
 
