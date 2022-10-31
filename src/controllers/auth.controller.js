@@ -31,7 +31,7 @@ export const signUp = async (req,res) => {
 }
 
 export const signUpSubUser = async (req,res) => {
-    
+
   const {username, nombre,apellido,email, password, roles, isModerator, idAdmin, nombreSalon} = req.body
 
   const newUser = new User({
@@ -49,7 +49,7 @@ export const signUpSubUser = async (req,res) => {
      const foundRoles = await Role.find({name: {$in: roles}})
      newUser.roles = foundRoles.map(role => role._id)
   }else {
-      const role = await Role.findOne({name:'admin'})
+      const role = await Role.findOne({name:'moderator'})
       newUser.roles = [role._id]
   }
 
