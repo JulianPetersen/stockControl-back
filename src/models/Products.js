@@ -16,7 +16,7 @@ const productSchema = new Schema({
     versionKey:false
 })
 
-Desarrollo
+// Desarrollo
 productSchema.methods.setImgUrl = function setImgUrl (filename){
     const {host, port} = appConfig
     this.imgUrl = `${host}:${port}/public/${filename}`
