@@ -1,9 +1,9 @@
-// //Desarrollo
-// export default {
-//     SECRET: 'stock-Api',
-//     host: 'http://localhost',
-//     port: '4000'
-// }
+//Desarrollo
+export default {
+    SECRET: 'stock-Api',
+    host: 'http://localhost',
+    port: '4000'
+}
 
 
 //Produccion
@@ -14,8 +14,8 @@
 //     port: '4000'
 // }
 
-export default {
-    SECRET: 'stock-Api',
-    host: 'https://frisor.com.ar',
-    //port: '4000'
-}
+// export default {
+//     SECRET: 'stock-Api',
+//     host: 'https://frisor.com.ar',
+//     //port: '4000'
+// }

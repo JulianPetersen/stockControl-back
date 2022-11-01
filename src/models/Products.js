@@ -16,17 +16,17 @@ const productSchema = new Schema({
     versionKey:false
 })
 
-//Desarrollo
-// productSchema.methods.setImgUrl = function setImgUrl (filename){
-//     const {host, port} = appConfig
-//     this.imgUrl = `${host}:${port}/public/${filename}`
-// }
+Desarrollo
+productSchema.methods.setImgUrl = function setImgUrl (filename){
+    const {host, port} = appConfig
+    this.imgUrl = `${host}:${port}/public/${filename}`
+}
 
 
 //produccion
-productSchema.methods.setImgUrl = function setImgUrl (filename){
-    const {host} = appConfig
-    this.imgUrl = `${host}/public/${filename}`
-}
+// productSchema.methods.setImgUrl = function setImgUrl (filename){
+//     const {host} = appConfig
+//     this.imgUrl = `${host}/public/${filename}`
+// }
 
 export default model('Product', productSchema);
