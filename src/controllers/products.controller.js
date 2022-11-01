@@ -1,6 +1,7 @@
 import Product from "../models/Products";
 
 export const createProduct = async (req, res) => {
+ try{
   const { name, category, price, stock, userId} = req.body;
   const newProduct = new Product({ name, category, price,stock, userId});
   if (req.file) {
@@ -10,6 +11,10 @@ export const createProduct = async (req, res) => {
   const ProductSaved = await newProduct.save();
   
   res.status(201).json(ProductSaved);
+ }catch(e){
+  res.status(401).json(e)
+ }
+  
   
 };
 
