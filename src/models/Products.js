@@ -21,12 +21,4 @@ productSchema.methods.setImgUrl = function setImgUrl (filename){
     const {host, port} = appConfig
     this.imgUrl = `${host}:${port}/public/${filename}`
 }
-
-
-//produccion
-// productSchema.methods.setImgUrl = function setImgUrl (filename){
-//     const {host} = appConfig
-//     this.imgUrl = `${host}/public/${filename}`
-// }
-
 export default model('Product', productSchema);
